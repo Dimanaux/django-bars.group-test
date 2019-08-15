@@ -12,6 +12,6 @@ class TrialQuestion(models.Model):
 
 
 class RecruitAnswer(models.Model):
-    recruit = models.ForeignKey('Recruit', on_delete=models.CASCADE)
+    recruit = models.ForeignKey('recruitment.Recruit', on_delete=models.CASCADE)
     question = models.ForeignKey('TrialQuestion', on_delete=models.CASCADE)
     answer = models.BooleanField()
