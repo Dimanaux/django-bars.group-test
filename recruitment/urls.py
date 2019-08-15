@@ -1,4 +1,10 @@
-from django.urls import path, include
+from django.urls import path
+
+from . import views
 
 urlpatterns = [
+    path('', views.index, name='index'),
+    path('sith', views.sith, name='sith'),
+    path('recruit', views.recruit, name='recruit'),
+    path('requests', views.requests, name='requests'),
 ]
