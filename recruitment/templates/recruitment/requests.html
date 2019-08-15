@@ -1,0 +1,27 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Рекруты{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+        <tr>
+            <td>Имя</td>
+            {% for question in questions %}
+                <td>{{ question.order }}</td>
+            {% endfor %}
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for recruit, answers in recruits.items %}
+            <tr>
+                <td>{{ recruit.name }}</td>
+                {% for answer in answers %}
+                    <td>{{ answer.answer }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Для Рекрутов{% endblock %}
+
+{% block content %}
+    <form action="{% url 'recruit' %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <label for="name-input">Имя</label>
+            <input type="text" name="name" id="name-input" placeholder="Энакин Скайуокер">
+
+            <br>
+
+            <label for="planet-select">Планета обитания</label>
+            <select name="planet" id="planet-select">
+                {% for planet in planets %}
+                    <option value="{{ planet.id }}">{{ planet.name }}</option>
+                {% endfor %}
+            </select>
+
+            <br>
+
+            <label for="age-input">Возраст</label>
+            <input type="number" name="age" id="age-input">
+
+            <br>
+
+            <label for="email-input">E-mail</label>
+            <input type="email" name="email" id="email-input">
+
+            <br>
+
+            <input type="submit" value="Продолжить">
+        </fieldset>
+    </form>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+    <a href="{% url 'sith' %}">Для Ситхов</a>
+    |
+    <a href="{% url 'recruit' %}">Для Рекрутов</a>
+{% endblock %}
