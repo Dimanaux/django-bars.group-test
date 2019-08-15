@@ -1,0 +1,7 @@
+{% extends 'layout/trial_template.html' %}
+
+{% block title %}{{ trial.title }}{% endblock %}
+
+{% block content %}
+    <a href="{% url 'question' trial_id=trial.id question_order=1 %}">Начать!</a>
+{% endblock %}

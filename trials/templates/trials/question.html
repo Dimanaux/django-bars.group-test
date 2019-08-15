@@ -1,0 +1,23 @@
+{% extends 'layout/trial_template.html' %}
+
+{% block title %}Вопрос {{ question.order }} - {{ trial.title }}{% endblock %}
+
+{% block content %}
+    <form action="{% url 'question' trial_id=trial.id question_order=question.order %}"
+          method="post">
+        {% csrf_token %}
+
+        <p>{{ question.question }}</p>
+
+        <fieldset>
+            <input type="radio" id="yes-input" name="answer" value="True">
+            <label for="yes-input">Да/правда</label>
+            &nbsp; &nbsp;
+            <input type="radio" id="no-input" name="answer" value="False">
+            <label for="no-input">Нет/ложь</label>
+            &nbsp; &nbsp;
+            <input type="submit" value="Ответить">
+        </fieldset>
+    </form>
+
+{% endblock %}
