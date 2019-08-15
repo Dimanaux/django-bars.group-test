@@ -14,7 +14,7 @@ def sith(request):
         return get_sith_form(request)
     elif request.method == 'POST':
         sith_id = int(request.POST['sith'])
-        request.session['sith'] = Sith.objects.get(sith_id)
+        request.session['sith_id'] = Sith.objects.get(sith_id).id
         return redirect('requests')
 
 
@@ -23,8 +23,8 @@ def recruit(request):
         return get_recruit_form(request)
     elif request.method == 'POST':
         r = create_recruit(request)
-        request.session['recruit'] = r
-        return redirect('trial')
+        request.session['recruit_id'] = r.id
+        return redirect('trial', trial_id=1)
 
 
 def requests(request):
@@ -60,6 +60,6 @@ def get_sith_form(request):
     )
 
 
-def create_recruit(request):
+def create_recruit(request) -> Recruit:
     form = RecruitForm(request.POST)
     return form.save()
