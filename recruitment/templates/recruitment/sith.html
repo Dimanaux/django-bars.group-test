@@ -4,9 +4,10 @@
 
 {% block content %}
     <form action="{% url 'sith' %}" method="post">
+        {% csrf_token %}
         <fieldset>
             <label for="sith-select">Выберите себя из списка</label>
-            <select name="sith" id="sith-select">
+            <select name="sith_id" id="sith-select">
                 {% for s in ss %}
                     <option value="{{ s.id }}">{{ s.name }}</option>
                 {% endfor %}

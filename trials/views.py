@@ -28,7 +28,7 @@ def answer_question(request, trial_question: TrialQuestion):
     RecruitAnswer.objects.create(
         recruit_id=request.session['recruit_id'],
         question=trial_question,
-        answer=bool(request.POST['answer'])
+        answer=request.POST['answer'] == 'True'
     )
     if TrialQuestion.objects.last() == trial_question:
         return redirect(
