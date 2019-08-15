@@ -21,3 +21,4 @@ class RecruitAnswer(models.Model):
 
     class Meta:
         ordering = ('question__order',)
+        unique_together = ('recruit', 'question')
