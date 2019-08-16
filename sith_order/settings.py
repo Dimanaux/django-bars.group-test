@@ -24,7 +24,10 @@ SECRET_KEY = 'u=fs8mkeu*=@+9dcmr%8#2b)*yrt*y%e_$_#gm28o15k!!p5+p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    'bars-group-test.herokuapp.com',
+]
 
 # Application definition
 
