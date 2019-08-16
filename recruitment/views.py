@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from django.core.mail import send_mail
+from django.core.mail import send_mail, get_connection
 
 from recruitment.forms import RecruitForm
 from recruitment.models import *
 from trials.models import *
-from sith_order.settings import EMAIL_HOST_USER
+from sith_order.settings import *
 
 
 def index(request):
@@ -82,8 +82,7 @@ def notify_shadow_hand(sh: ShadowHand):
         'Вербовка Ситхов',
         '{}, вы стали Рукой Теней. Ваш мастер - {}'.format(sh.name, sh.sith.name),
         EMAIL_HOST_USER,
-        [sh.email],
-        fail_silently=False,
+        [sh.email]
     )
 
 
