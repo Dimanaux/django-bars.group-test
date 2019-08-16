@@ -30,15 +30,22 @@ def recruit(request):
 
 
 def requests(request):
-    recruits = {}
+    recruits_with_answers = {}
     for r in Recruit.objects.filter(shadow_handed=False):
-        recruits[r] = RecruitAnswer.objects.filter(recruit=r)
+        recruits_with_answers[r] = RecruitAnswer.objects.filter(recruit=r)
+
+    sith_shadow_hands = {}
+    for s in Sith.objects.all():
+        sith_shadow_hands[s] = ShadowHand.objects.filter(sith=s).count()
+
     return render(
         request,
         'recruitment/requests.html',
         {
-            'recruits': recruits,
-            'questions': TrialQuestion.objects.all()
+            'recruits': recruits_with_answers,
+            'questions': TrialQuestion.objects.all(),
+            'sith_shadow_hands': sith_shadow_hands,
+            'major_siths': [s for s, h in sith_shadow_hands.items() if h > 1]
         }
     )
 
@@ -82,11 +89,14 @@ def notify_shadow_hand(sh: ShadowHand):
         'Вербовка Ситхов',
         '{}, вы стали Рукой Теней. Ваш мастер - {}'.format(sh.name, sh.sith.name),
         EMAIL_HOST_USER,
-        [sh.email]
+        [sh.email],
+        fail_silently=True
     )
 
 
 def make_shadow_hand(r: Recruit, s: Sith) -> ShadowHand:
+    if ShadowHand.objects.filter(sith=s).count() >= 3:
+        raise Exception("One sith's shadow hands quantity should not exceed 3")
     sh = ShadowHand.objects.create(
         name=r.name,
         age=r.age,

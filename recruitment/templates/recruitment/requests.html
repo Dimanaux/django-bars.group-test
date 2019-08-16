@@ -13,8 +13,9 @@
     <table>
         <thead>
         <tr>
-            <td>Ифнормация о рекрутёрах</td>
+            <td>Ифнормация о рекрутах</td>
             <td colspan="{{ questions|length }}">Ответы на вопросы</td>
+            <td>Действия</td>
         </tr>
         <tr>
             <td>Имя</td>
@@ -43,4 +44,42 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <hr>
+
+    <table>
+        <thead>
+        <tr>
+            <td colspan="2">Ситхти</td>
+        </tr>
+        <tr>
+            <td>Имя</td>
+            <td>Количество Рук Теней</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for sith, hands in sith_shadow_hands.items %}
+            <tr>
+                <td>{{ sith.name }}</td>
+                <td>{{ hands }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+
+    <section>
+        <h4>Ситхи у которых больше 1 Руки Теней:</h4>
+        {% if major_siths %}
+            <ul>
+                {% for major_sith in major_siths %}
+                    <li>{{ major_sith.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            Сотрудник месяца отсутствует
+        {% endif %}
+    </section>
 {% endblock %}
