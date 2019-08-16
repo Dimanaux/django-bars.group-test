@@ -1,10 +1,10 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
-from django.core.mail import send_mail, get_connection
 
 from recruitment.forms import RecruitForm
 from recruitment.models import *
-from trials.models import *
 from sith_order.settings import *
+from trials.models import *
 
 
 def index(request):
